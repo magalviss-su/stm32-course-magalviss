@@ -21,13 +21,45 @@
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
+//definicion de variables del sistema
+
+uint16_t dummy_16dec = 0;
+uint16_t dummy_16bin = 0;
+uint16_t dummy_16hex= 0;
+
+uint8_t dummy_8bit = 0;
+uint16_t dummy_16bit = 0;
+uint32_t dummy_32bit = 0;
+uint8_t overflow = 0;
+
+
+
 
 int main(void)
 {
+	dummy_8bit = 123;
+	dummy_16bit = 4986;
+	dummy_32bit = 12345678;
+
+	dummy_16dec = 32;
+	dummy_16hex = 0x20;
+	dummy_16bin = 0b100000;
+
+	dummy_16bin = dummy_16bin << 3; //prediccion: 0b100000000
+	dummy_16bin = dummy_16bin >> 3; //prediccion: 0b100000
+
+	dummy_8bit = 255;
+	dummy_16bit = 255;
+	dummy_32bit = 255;
+	overflow = dummy_8bit +1;
+	overflow = overflow + 1;
+
+	// Doble click al lado del numero de la linea para un breakpoint (no se ejecuta la línea del breakpoint)
+
     /* Loop forever */
 	while (1)
 	{
-
+// Quitamos el for
 	}
 	return 0;
 }
