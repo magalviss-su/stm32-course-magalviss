@@ -21,42 +21,120 @@
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
-//definicion de variables del sistema
 
-uint16_t dummy_16dec = 0;
-uint16_t dummy_16bin = 0;
-uint16_t dummy_16hex= 0;
-
-uint8_t dummy_8bit = 0;
-uint16_t dummy_16bit = 0;
-uint32_t dummy_32bit = 0;
-uint8_t overflow = 0;
-
-
+//Variables globales
+uint8_t variable1 = 0;
+uint8_t variable2 = 255;
+uint8_t variable3 = 10;
+uint16_t result = 0;
 
 
 int main(void)
 {
-	dummy_8bit = 123;
-	dummy_16bit = 4986;
-	dummy_32bit = 12345678;
+	/*
+	//Definimos mi variable 0.1
+	uint8_t mi_variable = 42;
 
-	dummy_16dec = 32;
-	dummy_16hex = 0x20;
-	dummy_16bin = 0b100000;
+    //0.2
 
-	dummy_16bin = dummy_16bin << 3; //prediccion: 0b100000000
-	dummy_16bin = dummy_16bin >> 3; //prediccion: 0b100000
+    uint8_t dec = 65;
+    uint8_t hex = 0x41;
+    uint8_t bin = 0b01000001;
+    //son iguales
 
-	dummy_8bit = 255;
-	dummy_16bit = 255;
-	dummy_32bit = 255;
-	overflow = dummy_8bit +1;
-	overflow = overflow + 1;
+	//0.3
 
-	// Doble click al lado del numero de la linea para un breakpoint (no se ejecuta la línea del breakpoint)
-   overflow = 735;
-   overflow = 0;
+    uint8_t  a = 255;
+    uint16_t b = 255;
+    uint32_t c = 255;
+    uint8_t  d = 256; //Se sale de la arquitectura por eso marca cero
+
+    uint8_t  e = 257; //Al igual que el caso anterior se desborda y vuelve a empezar
+
+	//0.4
+
+	uint8_t a = 200;
+    int8_t  b = 200;
+    int8_t  c = -1;
+
+	//0.5
+
+	int8_t  x = 127;
+	x = x + 1;
+
+	uint8_t y = 255;
+	y = y + 1;
+	/* Tanto 'x' como 'y' presentan un overflow, es decir, llegan a su valor maximo se desbordan y
+	 vuelven a empezar en el valor minimo, -128 para 'x' por ser variable de 8 bit con signo
+	 y 0 para 'y' por ser variable de 8 bit sin signo */
+/*
+	//0.6
+	 *
+	uint8_t result;
+	result = 0x0F + 0x01;
+	result = 0xFF + 0x01;
+	result = 0xA0 + 0x5F;
+	result = 0xA0 + 0x60;
+
+	//0.7
+	uint8_t x = 0;
+	x = 0x01;
+
+	x = 0x02;
+
+	x = 0x04;
+
+	x = 0x08;
+
+	x = 0x10;
+
+	x = 0x20;
+
+	x = 0x40;
+
+	x = 0x80;
+
+
+	uint8_t a = 5;
+	uint8_t b = 0;
+	uint8_t c = 255;
+
+	uint8_t r1 = !a;
+	uint8_t r2 = !b;
+	uint8_t r3 = !c;
+	uint8_t r4 = ~c;
+
+	uint8_t r5 = ~a; //11111010
+	*/
+
+/*
+
+	//Semana1
+
+	//1.1
+	uint8_t a          = 17;
+	uint8_t b          = 5;
+	uint8_t div_result = a / b;
+	uint8_t mod_result = a % b;
+	uint8_t mul_result = a * b;
+
+	//1.2
+	uint8_t x   = 200;
+	uint8_t y   = 100;
+	uint8_t sum = x + y;
+
+	//1.3
+
+	uint8_t val = 3;
+
+	uint8_t left1  = val << 1;
+	uint8_t left2  = val << 2;
+	uint8_t left3  = val << 3;
+	uint8_t right1 = val >> 1;
+	*/
+
+
+
     /* Loop forever */
 	while (1)
 	{
