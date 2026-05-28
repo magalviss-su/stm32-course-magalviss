@@ -133,8 +133,37 @@ int main(void)
 	uint8_t right1 = val >> 1;
 	*/
 
+	//1.4 bloque if, if-else
+	if (variable2 + variable3 != 0){
+		result = variable2 + variable3;
 
+	}
+	if (variable1 == 0){
+			result = 0;
 
+	}
+	if (variable3 >= variable1){
+		result = variable2 + variable3;
+
+	}
+	if (variable2 + variable3 == 0){
+			result = variable2 + variable3;
+
+		}else{
+		result = 0;
+		}
+		if (variable1 != 0){
+				result = 0;
+
+		}else {
+		result = variable2 + variable3;
+		}
+		if (variable3 <= variable1){
+			result = variable2 + variable3;
+
+		}else {
+			result = 0;
+		}
     /* Loop forever */
 	while (1)
 	{
