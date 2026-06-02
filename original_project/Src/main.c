@@ -17,6 +17,7 @@
  */
 
 #include <stdint.h>
+#include <stm32f4xx.h>
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -28,10 +29,13 @@ uint8_t variable2 = 255;
 uint8_t variable3 = 10;
 uint16_t result = 0;
 
+uint8_t counter = 0;
+uint16_t sum = 0;
+
 
 int main(void)
 {
-	/*
+		/*
 	//Definimos mi variable 0.1
 	uint8_t mi_variable = 42;
 
@@ -133,6 +137,7 @@ int main(void)
 	uint8_t right1 = val >> 1;
 	*/
 
+	/*
 	//1.4 bloque if, if-else
 	if (variable2 + variable3 != 0){
 		result = variable2 + variable3;
@@ -164,6 +169,58 @@ int main(void)
 		}else {
 			result = 0;
 		}
+
+
+
+	//1.5 ciclo for
+	for (counter = 10; counter > 1; counter --){
+
+	}
+
+
+	//1.6 While
+
+	while (counter <= 10){
+	sum = sum + counter;
+	counter ++;
+	}//fin while
+
+
+	//2.1 OPERADOR AND: La Mascara que revela
+	uint8_t value  = 0b10110101;
+	uint8_t mask   = 0b00001111;
+	uint8_t result = value & mask;
+
+	//2.2 OPERADOR OR: La Mascara que establece
+	uint8_t value  = 0b10100000;
+	uint8_t mask   = 0b00000101;
+	uint8_t result = value | mask;
+
+	//2.3 2.3 — Operador NOT: el complemento
+	uint8_t a       = 0b00001111;
+	uint8_t result1 = ~a;
+
+	uint8_t b       = 0b10100101;
+	uint8_t result2 = ~b;
+
+	uint8_t value = 0b11111111;
+	uint8_t mask = (1 << 0 | 1 << 1); //Poner un 1 en el bit cero y poner un 1 en el bit uno
+	value = value & ~mask;
+
+	//2.4
+
+	//2.5
+
+	//2.6 Primer registro real: habilitando el reloj
+
+	RCC->AHB1ENR |= (1 << 0); //Encender el reloj del puerto A que está en el bus AHB1
+	GPIOA->MODER |= (1 << 10); //Configurar el Pin PA5 como salida
+	/*El LED sigue apagado porque las salidas de datos arrancan en un estado logico bajopara que el pin 5 pase a un estado lógico alto
+	tengo que poner un estado logico alto (1), para eso debo configurar el Output Data Register */
+/*
+	GPIOA->ODR |= (1<<5); //Escribir un '1' logico en el Output Data Register para el Pin5 del puestro A
+*/
+
     /* Loop forever */
 	while (1)
 	{
