@@ -210,16 +210,16 @@ int main(void)
 	//2.4
 
 	//2.5
-
+*/
 	//2.6 Primer registro real: habilitando el reloj
 
 	RCC->AHB1ENR |= (1 << 0); //Encender el reloj del puerto A que está en el bus AHB1
 	GPIOA->MODER |= (1 << 10); //Configurar el Pin PA5 como salida
 	/*El LED sigue apagado porque las salidas de datos arrancan en un estado logico bajopara que el pin 5 pase a un estado lógico alto
 	tengo que poner un estado logico alto (1), para eso debo configurar el Output Data Register */
-/*
-	GPIOA->ODR |= (1<<5); //Escribir un '1' logico en el Output Data Register para el Pin5 del puestro A
-*/
+
+	GPIOA->ODR |= (0<<5); //Escribir un '1' logico en el Output Data Register para el Pin5 del puestro A
+
 
     /* Loop forever */
 	while (1)
