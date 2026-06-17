@@ -196,7 +196,7 @@ int main(void)
 	uint8_t mask   = 0b00000101;
 	uint8_t result = value | mask;
 
-	//2.3 2.3 — Operador NOT: el complemento
+	//2.3 — Operador NOT: el complemento
 	uint8_t a       = 0b00001111;
 	uint8_t result1 = ~a;
 
@@ -210,21 +210,107 @@ int main(void)
 	//2.4
 
 	//2.5
-*/
+
 	//2.6 Primer registro real: habilitando el reloj
 
-	RCC->AHB1ENR |= (1 << 0); //Encender el reloj del puerto A que está en el bus AHB1
+	RCC->AHB1ENR |= (1 << 0); //Encender el reloj del puerto A que esta en el bus AHB1
 	GPIOA->MODER |= (1 << 10); //Configurar el Pin PA5 como salida
-	/*El LED sigue apagado porque las salidas de datos arrancan en un estado logico bajopara que el pin 5 pase a un estado lógico alto
+	/*El LED sigue apagado porque las salidas de datos arrancan en un estado logico bajo para que el pin 5 pase a un estado logico alto
 	tengo que poner un estado logico alto (1), para eso debo configurar el Output Data Register */
-
+/*
 	GPIOA->ODR |= (0<<5); //Escribir un '1' logico en el Output Data Register para el Pin5 del puestro A
 
+*/
+/*
+	// 3.2
+//Activando el reloj del GPIOA
+	RCC->AHB1ENR |= (1 << 0);
+//Activando el reloj del GPIOB
+	RCC->AHB1ENR |= (1 << 1);
+//Desactivando el reloj del GPIOB
+	RCC->AHB1ENR &= ~(1 << 1);
+
+
+	// 3.3
+	//Activando el reloj del GPIOA
+	RCC->AHB1ENR |= (1 << 0);
+	//Configurar el Pin PA5 como salida
+	GPIOA->MODER |= (1 << 10);
+	//Poner un '1' lógico en la salida para obtener un Voltaje de salida
+	GPIOA->ODR |= (1 << 5);
+	//3.4
+	//Apagando el LED del PA5
+	GPIOA->ODR &= ~(1 << 5);
+
+	// 3.5 Pin de Entrada
+	//Activando el reloj del GPIOC
+	RCC->AHB1ENR |= (1 << 2);
+	//Configurar el pin 13 como salida
+	GPIOC->MODER &= ~(1 << 26);
+	GPIOC->MODER &= ~(1 << 27);
+
+
+	//3.8 Combinando registros en la secuencia correcta
+	//Activando relojes RCC
+	RCC->AHB1ENR |= (1 << 0);
+	RCC->AHB1ENR |= (1 << 2);
+	//RCC->AHB1ENR |= (5 << 0); Alternativa
+
+	//Modos (Entrada y Salida)
+	GPIOA->MODER |= (1 << 10);
+	GPIOC->MODER &= ~(1 << 26);
+	GPIOC->MODER &= ~(1 << 27);
+
+	//3.9 Conectando entrada con salida: el botón controla el LED usando BSRR
+
+	//Usando BSRR
+
+	//Activando relojes RCC
+		RCC->AHB1ENR |= (1 << 0);
+		RCC->AHB1ENR |= (1 << 2);
+		//RCC->AHB1ENR |= (5 << 0); Alternativa
+
+		//Modos (Entrada y Salida)
+		GPIOA->MODER |= (1 << 10);
+		GPIOC->MODER &= ~(1 << 26);
+		GPIOC->MODER &= ~(1 << 27);
+
+		while (1)
+		{
+		if ((GPIOC->IDR & (1<<13)) == 0)
+		{
+			GPIOA->BSRR = (1 << 5);
+		}
+		else{
+			GPIOA->BSRR = (1 << 21);
+			}
+		}
+		*/
+	//Usando ODR
+
+		//Activando relojes RCC
+				RCC->AHB1ENR |= (1 << 0);
+				RCC->AHB1ENR |= (1 << 2);
+				//RCC->AHB1ENR |= (5 << 0); Alternativa
+
+				//Modos (Entrada y Salida)
+				GPIOA->MODER |= (1 << 10);
+				GPIOC->MODER &= ~(1 << 26);
+				GPIOC->MODER &= ~(1 << 27);
+
+				while (1)
+				{
+				if ((GPIOC->IDR & (1<<13)) == 0)
+				{
+					GPIOA->ODR |= (1 << 5);
+				}
+				else{
+					GPIOA->ODR &= ~(1 << 5);
+				}
+				}
 
     /* Loop forever */
-	while (1)
-	{
-// Quitamos el for
+	while (1){
 	}
 	return 0;
 }
